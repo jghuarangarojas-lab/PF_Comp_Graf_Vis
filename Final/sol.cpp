@@ -3,9 +3,9 @@
 #include <iostream> 
 Sol::Sol() { 
 	x = 100.0f; 
-	y = 150.0f; 
+	y = 180.0f; 
 	z = -150.0f; 
-	radio = 20.0f; 
+	radio = 50.0f; 
 } 
 void Sol::dibujar() { 
 	glPushMatrix(); 

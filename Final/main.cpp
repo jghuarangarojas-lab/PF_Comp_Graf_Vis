@@ -17,9 +17,11 @@
 # include "Vapor.h"
 # include "Camara.h"
 # include "Lago.h"
+# include "Montanas.h"
 # include <ctime>
 #endif
 
+Montanas montanas;
 Texturas texturas;
 Sol sol;
 Terreno terreno;
@@ -39,6 +41,7 @@ void dibujarAyuda();
 void timer(int value)
 {
 	nube.actualizar();
+	rio.actualizar();
 	int nuevas = vapor.actualizar();
 	
 	for(int i=0; i<nuevas; i++)
@@ -122,7 +125,7 @@ void reshape_cb (int w, int h) {
 	glLoadIdentity ();
 	gluPerspective(45.0,(GLfloat)w/(GLfloat)h,1.0,1000.0);
 	glMatrixMode (GL_MODELVIEW);
-	glLoadIdentity ();
+	glLoadIdentity();
 }
 
 void display_cb() {	
@@ -144,8 +147,9 @@ void display_cb() {
 	camara.dibujar();
 	sol.iluminar();
 	terreno.dibujar(texturas.getPasto());
-	rio.dibujar(texturas.getAgua());
-	lago.dibujar();
+ 	montanas.dibujar(texturas.getRoca());
+    rio.dibujar(texturas.getAgua());
+	lago.dibujar(texturas.getAgua());
 	sol.dibujar();
 	nube.dibujar();
 	vapor.dibujar();
@@ -172,14 +176,12 @@ void initialize() {
 	glEnable(GL_LINE_SMOOTH);
 	glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
 	texturas.cargarTexturas();
-//	printf("Pasto = %u\n", texturas.getPasto());
-//	printf("Agua  = %u\n", texturas.getAgua());
 	glutDisplayFunc (display_cb);
 	glutReshapeFunc (reshape_cb);
 	glutKeyboardFunc(teclado_cb);
 	glutSpecialFunc(tecladoEspecial_cb);
-	//glClearColor(0.53f,0.81f,0.98f,1.0f);
-	glClearColor(0,0,0,1.0f);
+	glClearColor(0.53f,0.81f,0.98f,1.0f);
+	//glClearColor(0,0,0,1.0f);
 	glutTimerFunc(15,timer,0);
 }
 

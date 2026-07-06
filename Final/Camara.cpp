@@ -17,8 +17,6 @@ void Camara::dibujar() {
 	gluLookAt(x, y, z, x + mirarX, y + mirarY, z + mirarZ, 0, 1, 0);
 }
 
-void Camara::actualizar() {}
-
 void Camara::avanzar(float paso) {
 	x += sin(angH) * paso;
 	z -= cos(angH) * paso;

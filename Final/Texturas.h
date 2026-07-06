@@ -26,7 +26,6 @@ private:
 	Textura pasto;
 	Textura agua;
 	Textura roca;
-	Textura arena;
 	
 	int cargarTGA(const char* nombre, Textura* imagen);
 	
@@ -40,7 +39,6 @@ public:
 	GLuint getPasto();
 	GLuint getAgua();
 	GLuint getRoca();
-	GLuint getArena();
 };
 
 #endif

@@ -152,8 +152,7 @@ void Texturas::cargarTexturas()
 	if(!cargarTGA("Texturas/agua.tga",&agua)) printf("Error cargando agua\n");
 	
 	cargarTGA("Texturas/roca.tga",&roca);
-	
-	cargarTGA("Texturas/arena.tga",&arena);
+	if(!cargarTGA("Texturas/roca.tga",&roca)) printf("Error cargando roca\n");
 }
 
 GLuint Texturas::getCielo()
@@ -176,7 +175,3 @@ GLuint Texturas::getRoca()
 	return roca.ID;
 }
 
-GLuint Texturas::getArena()
-{
-	return arena.ID;
-}

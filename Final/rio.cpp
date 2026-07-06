@@ -4,9 +4,9 @@
 Rio::Rio()
 {
 	x = 0.0f;
-	y = -39.5f;      // Un poco sobre el terreno para evitar parpadeos (z-fighting)
+	y = -34.5f;      // Un poco sobre el terreno para evitar parpadeos (z-fighting)
 	z = 0.0f;
-	
+	desplazamientoTextura = 0.0f;
 	ancho = 12.0f;
 	nivelAgua = 0.0f;
 	puntos[0] = {-18,18,190};
@@ -21,14 +21,14 @@ Rio::Rio()
 
 void Rio::dibujar(GLuint textura)
 {
-    glPushMatrix();
+	glPushMatrix();
 	
 	glTranslatef(x, y, z);
 	glEnable(GL_TEXTURE_2D);
 	
 	glBindTexture(GL_TEXTURE_2D,textura);
 	// Color del agua
-	glColor3f(0.0f, 0.45f, 1.0f);
+	//glColor3f(0.0f, 0.45f, 1.0f);
 	
 	GLfloat mat_diffuse[]  = {0.0f, 0.45f, 1.0f, 1.0f};
 	GLfloat mat_ambient[]  = {0.0f, 0.25f, 0.8f, 1.0f};
@@ -40,13 +40,11 @@ void Rio::dibujar(GLuint textura)
 	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, mat_specular);
 	glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, mat_shininess);
 	
-	glColor3f(0.0f,0.45f,1.0f);
-	
 	glBegin(GL_QUAD_STRIP);
 	
 	for(int i=0;i<NUM_PUNTOS;i++)
 	{
-		float v = (float)i/(NUM_PUNTOS-1);
+		float v = (float)i*0.1f - desplazamientoTextura;
 		
 		glTexCoord2f(0.0f,v);
 		glVertex3f(puntos[i].izqX,nivelAgua,puntos[i].z);
@@ -58,4 +56,11 @@ void Rio::dibujar(GLuint textura)
 	glEnd();
 	glDisable(GL_TEXTURE_2D);
 	glPopMatrix();
+}
+void Rio::actualizar()
+{
+	desplazamientoTextura += 0.001f;
+	
+	if(desplazamientoTextura > 1.0f)
+		desplazamientoTextura -= 1.0f;
 }

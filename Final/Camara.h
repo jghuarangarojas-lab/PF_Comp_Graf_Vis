@@ -8,7 +8,6 @@ private:
 public:
 	Camara();
 	void dibujar();
-	void actualizar();
 	void avanzar(float paso);      // W / S
 	void strafe(float paso);       // A / D
 	void elevar(float paso);       // Q / E

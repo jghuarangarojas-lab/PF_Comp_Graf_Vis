@@ -25,11 +25,12 @@ private:
 	};
 	
 	static const int NUM_PUNTOS = 8;
-	
+	float desplazamientoTextura;
 	PuntoRio puntos[NUM_PUNTOS];
 public:
 	Rio();
 	void dibujar(GLuint textura);
+	void actualizar();
 };
 
 #endif

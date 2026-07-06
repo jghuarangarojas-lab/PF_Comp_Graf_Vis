@@ -1,6 +1,11 @@
 #ifndef LAGO_H
 #define LAGO_H
 
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#else
+#include <GL/gl.h>
+#endif
 class Lago
 {
 private:
@@ -14,8 +19,7 @@ private:
 public:
 	
 	Lago();
-	
-	void dibujar();
+	void dibujar(GLuint textura);
 	
 };
 
